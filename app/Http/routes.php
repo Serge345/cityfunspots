@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('welcome'); });
+Route::get('/home','UsuariosController@home');
+Route::resource('usuarios','UsuariosController');
+Route::resource('establecimientos','EstablecimientosController');
+Route::resource('publicaciones','PublicacionController');
+Route::resource('tipoEstablecimiento','TipoEstablecimientoController');
