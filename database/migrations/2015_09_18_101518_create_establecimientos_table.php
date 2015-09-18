@@ -14,6 +14,11 @@ class CreateEstablecimientosTable extends Migration
     {
         Schema::create('establecimientos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_tipo');
+            $table->String('nombre');
+            $table->String('direccion');
+            $table->String('latitud')->nullable();
+            $table->String('longitud')->nullable();
             $table->timestamps();
         });
     }

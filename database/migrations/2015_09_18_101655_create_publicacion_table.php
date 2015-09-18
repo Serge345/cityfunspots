@@ -13,7 +13,10 @@ class CreatePublicacionTable extends Migration
     public function up()
     {
         Schema::create('publicacion', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Integer('id_usuario');
+            $table->Integer('id_establecimiento');
+            $table->Date('fecha');
+            $table->String('contenido')->nullable();
             $table->timestamps();
         });
     }

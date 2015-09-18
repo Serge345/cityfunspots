@@ -13,7 +13,8 @@ class CreateTipoEstablecimientoTable extends Migration
     public function up()
     {
         Schema::create('tipoEstablecimiento', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Integer('id');
+            $table->String('Descripcion')->nullable();
             $table->timestamps();
         });
     }
