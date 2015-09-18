@@ -52,7 +52,7 @@ public function edit(Request $request, $id)
   }
   catch(ModelNotFoundException $e)
   {
-    Session::flash('flash_message', "el usuario $id no se encontró!");
+    Session::flash('flash_message', "el usuario $id no se ha encontrado!");
 
     return redirect()->back();
   }
@@ -80,9 +80,46 @@ public function update(Request $request, $id)
       }
       catch(ModelNotFoundException $e)
       {
-        Session::flash('flash_message', "El usuario $id no se encontró!");
+        Session::flash('flash_message', "El usuario $id no se ha encontrado!");
 
         return redirect()->back();
       }
     }
+
+    public function show(Request $request, $id)
+{
+  try{
+    $usuario = Usuario::findOrFail($id);
+
+    return view('citySpots/usuarios.show')->withUsuario($usuario);
+  }
+  catch(ModelNotFoundException $e)
+  {
+    Session::flash('flash_message', "El usuario $id no fue encontrado!");
+
+    return redirect()->back();
+  }
+}
+
+
+public function destroy(Request $request, $id)
+{
+  try
+  {
+    $usuario = Usuario::findOrFail($id);
+
+    $usuario->delete();
+
+    Session::flash('flash_message', 'El usuario se ha eliminado');
+
+    return redirect()->route('usuarios.index');
+  }
+  catch(ModelNotFoundException $e)
+  {
+    Session::flash('flash_message', "El usuario $id no ha sido encontrado!");
+
+    return redirect()->back();
+  }
+}
+
 }
