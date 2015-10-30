@@ -15,7 +15,7 @@ class User extends Model implements AuthenticatableContract,
                                     CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
-
+     return $this->hasMany('App\Publicacion');
     /**
      * The database table used by the model.
      *

@@ -25,6 +25,15 @@
     {!! Form::label('direccion', 'Direccion', ['class' => 'control-label']) !!}
     {!! Form::text('direccion', null, ['class' => 'form-control']) !!}
 </div>
+<div class="form-group">
+    {!! Form::label('latitud', 'Latitud', ['class' => 'control-label', 'step' => '0']) !!}
+    {!! Form::text('latitud', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group">
+    {!! Form::label('longitud', 'Longitud', ['class' => 'control-label']) !!}
+    {!! Form::text('longitud', null, ['class' => 'form-control']) !!}
+</div>
 
 
 

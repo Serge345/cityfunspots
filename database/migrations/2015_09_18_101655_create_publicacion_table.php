@@ -13,11 +13,24 @@ class CreatePublicacionTable extends Migration
     public function up()
     {
         Schema::create('publicacion', function (Blueprint $table) {
-            $table->Integer('id_usuario');
-            $table->Integer('id_establecimiento');
+            $table->Integer('id_usuario')->unsigned();
+            $table->Integer('id_establecimiento')->unsigned();
             $table->Date('fecha');
             $table->String('contenido')->nullable();
             $table->timestamps();
+
+            $table->foreign('id_usuario')
+            ->references('id')->on('users')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+
+
+             $table->foreign('id_establecimiento')
+             ->references->('id')->on('establecimientos')
+             ->onUpdate('cascade')
+             ->onDelete('cascade');
+
+
         });
     }
 
