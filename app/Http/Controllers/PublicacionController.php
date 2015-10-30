@@ -5,8 +5,118 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Publicacion;
+use Session;
 
 class PublicacionController extends Controller
 {
-    //
+  public function home(Request $request){
+    return view('citySpots.home');
+  }
+
+  public function create(Request $request){
+    return view('citySpots/publicaciones/create');
+  }
+
+  public function store(Request $request)
+  {
+    $this->validate($request, [
+          'nombre'      => 'required | string | max:40',
+          'direccion'   => 'required | string',
+          'latitud'     => ' numeric | min:-180 | max:180',
+          'longitud'    => ' numeric | min:-180 | max:180'
+      ]);
+      $input = $request->all();
+
+      Publicacion::create($input);
+      Session::flash('flash_message', 'El post se ha creado con exito!');
+      return redirect('/home');
+  }
+
+  public function index(Request $request)
+{
+  $publicaciones = Publicacion::all();
+
+  return view('citySpots/publicaciones.index', ['publicaciones' => $publicaciones]);
+}
+
+public function edit(Request $request, $id)
+{
+try
+{
+  $publicacion = Publicacion::findOrFail($id);
+
+  return view('citySpots/publicaciones.edit')->withPublicacion($publicacion);
+}
+catch(ModelNotFoundException $e)
+{
+  Session::flash('flash_message', "el post $id no se ha encontrado!");
+
+  return redirect()->back();
+}
+}
+
+public function update(Request $request, $id)
+  {
+    try
+    {
+      $publicacion = Publicacion::findOrFail($id);
+
+      $this->validate($request, [
+        'nombre'      => 'required | string | alpha_dash | max:40',
+        'direccion'   => 'required | string',
+        'latitud'     => ' numeric | min:-180 | max:180',
+        'longitud'    => ' numeric | min:-180 | max:180'
+        ]);
+      $input = $request->all();
+
+      $publicacion->fill($input)->save();
+
+      Session::flash('flash_message', 'Post actualizado');
+
+      return redirect()->route('publicaciones.index');
+    }
+    catch(ModelNotFoundException $e)
+    {
+      Session::flash('flash_message', "El post $id no se ha encontrado!");
+
+      return redirect()->back();
+    }
+  }
+
+  public function show(Request $request, $id)
+{
+try{
+  $publicacion = Publicacion::findOrFail($id);
+
+  return view('citySpots/publicaciones.show')->withPublicacion($Publicacion);
+}
+catch(ModelNotFoundException $e)
+{
+  Session::flash('flash_message', "El post $id no fue encontrado!");
+
+  return redirect()->back();
+}
+}
+
+
+public function destroy(Request $request, $id)
+{
+try
+{
+  $publicacion = Publicacion::findOrFail($id);
+
+  $publicacion->delete();
+
+  Session::flash('flash_message', 'El post se ha eliminado');
+
+  return redirect()->route('publicaciones.index');
+}
+catch(ModelNotFoundException $e)
+{
+  Session::flash('flash_message', "El post $id no ha sido encontrado!");
+
+  return redirect()->back();
+}
+}
 }

@@ -15,11 +15,11 @@
     {!! Form::label('nombre', 'Nombre', ['class' => 'control-label']) !!}
     {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
 </div>
-
 <div class="form-group">
-    {!! Form::label('id tipo', 'Id tipo', ['class' => 'control-label']) !!}
+    {!! Form::label('id_tipo', 'Categoria', ['class' => 'control-label']) !!}
     {!! Form::text('id_tipo', null, ['class' => 'form-control']) !!}
 </div>
+
 
 <div class="form-group">
     {!! Form::label('direccion', 'Direccion', ['class' => 'control-label']) !!}
@@ -39,6 +39,7 @@
 
 
 {!! Form::submit('Crear nuevo establecimiento', ['class' => 'btn btn-primary']) !!}
+<a href="{{ route('tipoEstablecimiento.create') }}" class="btn btn-info">agregar una nueva categoria</a>
 
 {!! Form::close() !!}
 

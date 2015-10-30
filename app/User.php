@@ -15,7 +15,7 @@ class User extends Model implements AuthenticatableContract,
                                     CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
-     return $this->hasMany('App\Publicacion');
+
     /**
      * The database table used by the model.
      *
@@ -36,4 +36,9 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function publicaciones(){
+      
+      return $this->hasMany('App\Publicacion');
+   }
 }

@@ -16,6 +16,10 @@ class UsuariosController extends Controller
       return view('citySpots.home');
     }
 
+    public function dashboard(Request $request){
+      return view('citySpots.dashboard');
+    }
+
     public function create(Request $request){
       return view('citySpots/usuarios/create');
     }

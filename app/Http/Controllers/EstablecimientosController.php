@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Establecimiento;
+use Session;
 
 class EstablecimientosController extends Controller
 {
-  public function home(Request $request){
-    return view('citySpots.home');
-  }
+
 
   public function create(Request $request){
     return view('citySpots/establecimientos/create');
@@ -19,10 +19,10 @@ class EstablecimientosController extends Controller
   public function store(Request $request)
   {
     $this->validate($request, [
-          'nombre'      => 'required | string | alpha_dash | max:40',
-          'email'       => 'required | email',
-          'nickname'    => 'required | string | alpha_num | max:32',
-          'password'    => 'required | string | max:30'
+          'nombre'      => 'required | string | max:40',
+          'direccion'   => 'required | string',
+          'latitud'     => 'numeric | min:-180 | max:180',
+          'longitud'    => 'numeric | min:-180 | max:180'
       ]);
       $input = $request->all();
 
@@ -61,10 +61,11 @@ public function update(Request $request, $id)
       $establecimiento = Establecimiento::findOrFail($id);
 
       $this->validate($request, [
-            'nombre'      => 'required | string | alpha_dash | max:40',
-            'email'       => 'required | email',
-            'nickname'    => 'required | string | alpha_num | max:32',
-            'password'    => 'required | string | max:30'
+        'nombre'      => 'required | string | alpha_dash | max:40',
+        'direccion'   => 'required | string',
+        'id_tipo'     => 'required | numeric',
+        'latitud'     => ' numeric | min:-180 | max:180',
+        'longitud'    => ' numeric | min:-180 | max:180'
         ]);
       $input = $request->all();
 

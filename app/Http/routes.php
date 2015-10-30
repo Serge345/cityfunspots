@@ -13,6 +13,7 @@
 
 Route::get('/', function () { return view('welcome'); });
 Route::get('/home','UsuariosController@home');
+Route::get('/dashboard','UsuariosController@dashboard');
 Route::resource('usuarios','UsuariosController');
 Route::resource('establecimientos','EstablecimientosController');
 Route::resource('publicaciones','PublicacionController');
