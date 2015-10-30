@@ -26,10 +26,6 @@
     {!! Form::text('direccion', null, ['class' => 'form-control']) !!}
 </div>
 
-<div class="form-group">
-    {!! Form::label('password', 'Password', ['class' => 'control-label']) !!}
-    {!! Form::text('password', null, ['class' => 'form-control']) !!}
-</div>
 
 
 

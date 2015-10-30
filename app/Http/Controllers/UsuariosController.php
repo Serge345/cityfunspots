@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Usuario;
+use App\User;
 use Session;
 
 class UsuariosController extends Controller
@@ -23,21 +23,21 @@ class UsuariosController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-            'nombre'      => 'required | string | alpha_dash | max:40',
+            'name'      => 'required | string | max:40',
             'email'       => 'required | email',
             'nickname'    => 'required | string | alpha_num | max:32',
-            'password'    => 'required | string | max:30'
+            'password'    => 'required | string |min:6| max:30'
         ]);
         $input = $request->all();
 
-        Usuario::create($input);
+        User::create($input);
         Session::flash('flash_message', 'El usuario nuevo se ha creado con exito!');
         return redirect('/home');
     }
 
     public function index(Request $request)
 {
-    $usuarios = Usuario::all();
+    $usuarios = User::all();
 
     return view('citySpots/usuarios.index', ['usuarios' => $usuarios]);
 }
@@ -46,7 +46,7 @@ public function edit(Request $request, $id)
 {
   try
   {
-    $usuario = Usuario::findOrFail($id);
+    $usuario = User::findOrFail($id);
 
     return view('citySpots/usuarios.edit')->withUsuario($usuario);
   }
@@ -62,13 +62,13 @@ public function update(Request $request, $id)
     {
       try
       {
-        $usuario = Usuario::findOrFail($id);
+        $usuario = User::findOrFail($id);
 
         $this->validate($request, [
-              'nombre'      => 'required | string | alpha_dash | max:40',
+              'nombre'      => 'required | string  | max:40',
               'email'       => 'required | email',
               'nickname'    => 'required | string | alpha_num | max:32',
-              'password'    => 'required | string | max:30'
+              'password'    => 'required | string |min:6 | max:30'
           ]);
         $input = $request->all();
 
@@ -89,7 +89,7 @@ public function update(Request $request, $id)
     public function show(Request $request, $id)
 {
   try{
-    $usuario = Usuario::findOrFail($id);
+    $usuario = User::findOrFail($id);
 
     return view('citySpots/usuarios.show')->withUsuario($usuario);
   }
@@ -106,7 +106,7 @@ public function destroy(Request $request, $id)
 {
   try
   {
-    $usuario = Usuario::findOrFail($id);
+    $usuario = User::findOrFail($id);
 
     $usuario->delete();
 

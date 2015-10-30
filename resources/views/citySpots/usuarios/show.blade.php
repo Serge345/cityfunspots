@@ -8,7 +8,7 @@
 <table class="table table-striped table-hover">
   <tr>
     <td style="width: 200px">Nombre</td>
-    <td>{{ $usuario->nombre }}</td>
+    <td>{{ $usuario->name }}</td>
   </tr>
   <tr>
     <td>email</td>

@@ -12,8 +12,8 @@
 {!! Form::open(['route' => 'usuarios.store']) !!}
 
 <div class="form-group">
-    {!! Form::label('nombre', 'Nombre', ['class' => 'control-label']) !!}
-    {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
+    {!! Form::label('name', 'Nombre', ['class' => 'control-label']) !!}
+    {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
@@ -28,7 +28,11 @@
 
 <div class="form-group">
     {!! Form::label('password', 'Password', ['class' => 'control-label']) !!}
-    {!! Form::text('password', null, ['class' => 'form-control']) !!}
+    {!! Form::password('password', null, ['class' => 'form-control']) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('password_confirmation', 'Confirmar Password',['class' => 'control-label']) !!}
+    {!! Form::password('password_confirmation', null,['class' => 'control-label']) !!}
 </div>
 
 

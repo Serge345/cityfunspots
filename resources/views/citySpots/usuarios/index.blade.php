@@ -3,12 +3,12 @@
 @section('content')
 
 <h1>Usuarios registrados:</h1>
-<p class="lead">Lista de usuarios. <a href="citySpots/usuarios/create">crear uno nuevo</a></p>
+<p class="lead">Lista de usuarios. <a href="{{url('usuarios/create')}}">crear uno nuevo</a></p>
 <hr>
 
 @foreach($usuarios as $usuario)
 
-<h3>{{ $usuario->nombre }} ({{ ($usuario->email) }})({{ ($usuario->nickname) }})</h3>
+<h3>{{ $usuario->name }} {{ ($usuario->email) }} {{ ($usuario->nickname) }}</h3>
 
 
 <p>
