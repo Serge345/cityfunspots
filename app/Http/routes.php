@@ -17,4 +17,4 @@ Route::get('/dashboard','UsuariosController@dashboard');
 Route::resource('usuarios','UsuariosController');
 Route::resource('establecimientos','EstablecimientosController');
 Route::resource('publicaciones','PublicacionController');
-Route::resource('tipoEstablecimiento','TipoEstablecimientoController');
+Route::resource('tipoEstablecimiento','Tipo_EstablecimientoController');

@@ -14,19 +14,22 @@ class CreateEstablecimientosTable extends Migration
     {
         Schema::create('establecimientos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_tipo')->unsigned();
+            $table->Integer('id_tipo')->unsigned()->nullable();
             $table->String('nombre');
             $table->String('direccion');
             $table->String('latitud')->nullable();
             $table->String('longitud')->nullable();
             $table->timestamps();
 
-            $table->foreing('id_tipo')
-              ->references->('id')->on('tipoEstablecimiento')
-              ->onUpdate('cascade')
-              ->onDelete('cascade');
 
         });
+
+        Schema::table('establecimientos', function(Blueprint $table){
+
+                      $table->foreing('id_tipo')
+                        ->references('id')->on('tipo_Establecimiento');
+        });
+
     }
 
     /**

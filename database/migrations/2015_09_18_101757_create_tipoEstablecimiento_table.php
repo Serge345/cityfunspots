@@ -14,7 +14,7 @@ class CreateTipoEstablecimientoTable extends Migration
     {
         Schema::create('tipo_Establecimiento', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->String('nombre');
             $table->String('Descripcion',150);
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ class CreateTipoEstablecimientoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tipoEstablecimiento');
+        Schema::drop('tipo_Establecimiento');
     }
 }

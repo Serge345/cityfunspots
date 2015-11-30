@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\TipoEstablecimiento;
+use App\Tipo_Establecimiento;
 use Session;
 
-class TipoEstablecimientoController extends Controller
+class Tipo_EstablecimientoController extends Controller
 {
   public function home(Request $request){
     return view('citySpots.home');
@@ -26,14 +26,14 @@ class TipoEstablecimientoController extends Controller
       ]);
       $input = $request->all();
 
-      TipoEstablecimiento::create($input);
+      Tipo_Establecimiento::create($input);
       Session::flash('flash_message', 'La nueva categoria se ha creado con exito!');
       return redirect('/home');
   }
 
   public function index(Request $request)
 {
-  $categorias = TipoEstablecimiento::all();
+  $categorias = Tipo_Establecimiento::all();
 
   return view('citySpots/categorias.index', ['categorias' => $categorias]);
 }
@@ -42,9 +42,9 @@ public function edit(Request $request, $id)
 {
 try
 {
-  $categoria = TipoEstablecimiento::findOrFail($id);
+  $categoria = Tipo_Establecimiento::findOrFail($id);
 
-  return view('citySpots/categorias.edit')->withTipoEstablecimiento($categoria);
+  return view('citySpots/categorias.edit')->withTipo_Establecimiento($categoria);
 }
 catch(ModelNotFoundException $e)
 {
@@ -58,7 +58,7 @@ public function update(Request $request, $id)
   {
     try
     {
-      $categoria = TipoEstablecimiento::findOrFail($id);
+      $categoria = Tipo_Establecimiento::findOrFail($id);
 
       $this->validate($request, [
             'nombre'      => 'required | string | max:40',
@@ -83,9 +83,9 @@ public function update(Request $request, $id)
   public function show(Request $request, $id)
 {
 try{
-  $categoria = TipoEstablecimiento::findOrFail($id);
+  $categoria = Tipo_Establecimiento::findOrFail($id);
 
-  return view('citySpots/categorias.show')->withTipoEstablecimiento($categoria);
+  return view('citySpots/categorias.show')->withTipo_Establecimiento($categoria);
 }
 catch(ModelNotFoundException $e)
 {
@@ -100,7 +100,7 @@ public function destroy(Request $request, $id)
 {
 try
 {
-  $categoria = TipoEstablecimiento::findOrFail($id);
+  $categoria = Tipo_Establecimiento::findOrFail($id);
 
   $categoria->delete();
 
