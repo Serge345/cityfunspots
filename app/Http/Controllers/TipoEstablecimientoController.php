@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Tipo_Establecimiento;
 use Session;
 
-class Tipo_EstablecimientoController extends Controller
+class TipoEstablecimientoController extends Controller
 {
   public function home(Request $request){
     return view('citySpots.home');

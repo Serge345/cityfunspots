@@ -23,13 +23,15 @@ class CreateEstablecimientosTable extends Migration
 
 
         });
-
+/*
         Schema::table('establecimientos', function(Blueprint $table){
 
                       $table->foreing('id_tipo')
-                        ->references('id')->on('tipo_Establecimiento');
+                        ->references('id')->on('tipo_Establecimiento')
+                        ->onUpdate('cascade')
+                        ->onDelete('cascade');
         });
-
+*/
     }
 
     /**

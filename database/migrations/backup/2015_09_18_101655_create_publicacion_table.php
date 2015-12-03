@@ -19,7 +19,7 @@ class CreatePublicacionTable extends Migration
             $table->Date('fecha');
             $table->String('contenido')->nullable();
             $table->timestamps();
-
+/*
             $table->foreign('id_usuario')
             ->references('id')->on('users')
             ->onUpdate('cascade')
@@ -29,7 +29,7 @@ class CreatePublicacionTable extends Migration
              ->references('id')->on('establecimientos')
              ->onUpdate('cascade')
              ->onDelete('cascade');
-
+*/
         });
     }
 
