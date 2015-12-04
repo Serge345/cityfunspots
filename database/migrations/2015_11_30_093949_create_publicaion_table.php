@@ -14,10 +14,9 @@ class CreatePublicaionTable extends Migration
     {
         Schema::create('publicaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->Integer('id_usuario')->unsigned()->nullable();
-            $table->Integer('id_establecimiento')->unsigned()->nullable();
-            $table->Date('fecha');
-            $table->String('contenido')->nullable();
+            $table->Integer('id_usuario')->nullable();
+            $table->Integer('id_establecimiento')->nullable();
+            $table->String('contenido',250);
             $table->timestamps();
         });
     }

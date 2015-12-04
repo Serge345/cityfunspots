@@ -6,10 +6,17 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Publicacion;
+use App\User;
+use App\Establecimiento;
 use Session;
+use Illuminate\Support\Facades\Request;
 
 class PublicacionController extends Controller
 {
+  public function dashboard(){
+    return view('citySpots.dashboard');
+  }
+
   public function home(Request $request){
     return view('citySpots.home');
   }
@@ -18,26 +25,31 @@ class PublicacionController extends Controller
     return view('citySpots/publicaciones/create');
   }
 
-  public function store(Request $request)
+  public function store(Request $request, $SiteId)
   {
+    $user=Auth::user();
+
+
     $this->validate($request, [
-          'nombre'      => 'required | string | max:40',
-          'direccion'   => 'required | string',
-          'latitud'     => ' numeric | min:-180 | max:180',
-          'longitud'    => ' numeric | min:-180 | max:180'
+          'contenido' => 'required| String | max 250'
       ]);
       $input = $request->all();
 
-      Publicacion::create($input);
+      Publicacion::create($input,$user->id,$SiteId);
       Session::flash('flash_message', 'El post se ha creado con exito!');
-      return redirect('/home');
+      return redirect('citySpots.dashboard');
   }
 
-  public function index(Request $request)
+  public function index(Request $request,$id)
 {
-  $publicaciones = Publicacion::all();
+  $user=Auth::user();
+  $site=Establecimiento::findOrFail($id);
 
-  return view('citySpots/publicaciones.index', ['publicaciones' => $publicaciones]);
+
+  $publicaciones = Publicacion::findOrFail($user->id);
+
+  return view('citySpots/publicaciones.index', ['publicaciones' => $publicaciones,
+  'sitio'=>$site]);
 }
 
 public function edit(Request $request, $id)
@@ -62,12 +74,9 @@ public function update(Request $request, $id)
     {
       $publicacion = Publicacion::findOrFail($id);
 
-      $this->validate($request, [
-        'nombre'      => 'required | string | alpha_dash | max:40',
-        'direccion'   => 'required | string',
-        'latitud'     => ' numeric | min:-180 | max:180',
-        'longitud'    => ' numeric | min:-180 | max:180'
-        ]);
+      $  $this->validate($request, [
+              'contenido' => 'required| String | max 250'
+          ]);
       $input = $request->all();
 
       $publicacion->fill($input)->save();
