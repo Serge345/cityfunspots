@@ -28,7 +28,7 @@ class TipoEstablecimientoController extends Controller
 
       Tipo_Establecimiento::create($input);
       Session::flash('flash_message', 'La nueva categoria se ha creado con exito!');
-      return redirect('/home');
+      return redirect('establecimientos/create');
   }
 
   public function index(Request $request)

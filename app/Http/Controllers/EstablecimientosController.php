@@ -44,7 +44,7 @@ try
 {
   $establecimiento = Establecimiento::findOrFail($id);
 
-  return view('citySpots/establecimientos.edit')->withestablecimiento($establecimiento);
+  return view('citySpots/establecimientos.edit')->withEstablecimiento($establecimiento);
 }
 catch(ModelNotFoundException $e)
 {
@@ -61,7 +61,7 @@ public function update(Request $request, $id)
       $establecimiento = Establecimiento::findOrFail($id);
 
       $this->validate($request, [
-        'nombre'      => 'required | string | alpha_dash | max:40',
+        'nombre'      => 'required | string | max:40',
         'direccion'   => 'required | string',
         'id_tipo'     => 'required | numeric',
         'latitud'     => ' numeric | min:-180 | max:180',
@@ -73,7 +73,7 @@ public function update(Request $request, $id)
 
       Session::flash('flash_message', 'establecimiento actualizado');
 
-      return redirect('/home');
+      return redirect('dashboard');
     }
     catch(ModelNotFoundException $e)
     {

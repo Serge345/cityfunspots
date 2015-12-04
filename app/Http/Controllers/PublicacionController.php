@@ -22,7 +22,7 @@ class PublicacionController extends Controller
   }
 
   public function create(Request $request){
-    return view('citySpots/publicaciones/create');
+    return view('citySpots/publicaciones/create{id}');
   }
 
   public function store(Request $request, $SiteId)

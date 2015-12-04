@@ -17,10 +17,16 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="{{url('home/')}}">CityFunSpots</a>
+          <a class="navbar-brand" href="{{url('dashboard')}}">CityFunSpots</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="{{ url('dashboard') }}">Inicio</a></li>
+            <li><a href="{{ url('dashboard') }}">Perfil</a></li>
+            <li><a href="{{ url('dashboard') }}">Cerrar Sesión</a></li>
+
+          </ul>
         </div>
         <div class="nav navbar-nav navbar-right">
-            <li><a href="{{ url('home/') }}">CityFunSpots</a></li>
+
         </div>
       </div>
     </nav>
