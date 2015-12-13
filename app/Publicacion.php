@@ -8,7 +8,8 @@ class Publicacion extends Model
 {
 
   protected $fillable = [
-          'fecha',
+          'id_usuario',
+          'id_establecimiento',
           'contenido',
              ];
 

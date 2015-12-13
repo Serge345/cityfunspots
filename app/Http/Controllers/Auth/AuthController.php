@@ -33,6 +33,8 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
+    protected $redirectPath = 'citySpots/dashboard';
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -44,7 +46,8 @@ class AuthController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'nickname'=> 'required|String|max:32',
+            'password' => 'required|confirmed|min:6|max:30',
         ]);
     }
 
@@ -59,6 +62,7 @@ class AuthController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'nickname' => $data['nickname'],
             'password' => bcrypt($data['password']),
         ]);
     }

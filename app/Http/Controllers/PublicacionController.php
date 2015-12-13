@@ -9,7 +9,7 @@ use App\Publicacion;
 use App\User;
 use App\Establecimiento;
 use Session;
-use Illuminate\Support\Facades\Request;
+
 
 class PublicacionController extends Controller
 {
@@ -22,22 +22,24 @@ class PublicacionController extends Controller
   }
 
   public function create(Request $request){
-    return view('citySpots/publicaciones/create{id}');
+    return view('citySpots/publicaciones/create');
   }
 
-  public function store(Request $request, $SiteId)
+  public function store(Request $request)
   {
-    $user=Auth::user();
+
 
 
     $this->validate($request, [
-          'contenido' => 'required| String | max 250'
+          'id_usuario'=> 'required| numeric',
+          'id_establecimiento' => 'required| numeric',
+          'contenido' => 'required| String | max:250'
       ]);
       $input = $request->all();
 
-      Publicacion::create($input,$user->id,$SiteId);
+      Publicacion::create($input);
       Session::flash('flash_message', 'El post se ha creado con exito!');
-      return redirect('citySpots.dashboard');
+      return redirect('home');
   }
 
   public function index(Request $request,$id)

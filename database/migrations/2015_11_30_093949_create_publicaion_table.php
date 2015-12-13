@@ -12,7 +12,7 @@ class CreatePublicaionTable extends Migration
      */
     public function up()
     {
-        Schema::create('publicaciones', function (Blueprint $table) {
+        Schema::create('publicacions', function (Blueprint $table) {
             $table->increments('id');
             $table->Integer('id_usuario')->nullable();
             $table->Integer('id_establecimiento')->nullable();

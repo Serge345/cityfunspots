@@ -5,16 +5,15 @@ namespace App\Http\Controllers\api;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Establecimiento;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Database\QueryException;
-class EstablecimientosController extends Controller
+use App\Publicacion;
+
+class PublicacionesController extends Controller
 {
-  public function listAll(Request $request)
+  public function listAll(Request $request, $SiteId)
     {
       try
       {
-        $response = Establecimiento::all();
+        $response = Publicacion::where('id_establecimiento','=',$SiteId)->get();
         $statusCode = 200;  // OK
       }
       catch (ModelNotFoundException $e)
@@ -26,10 +25,11 @@ class EstablecimientosController extends Controller
       return response()->json($response, $statusCode);
     }
 
-    public function listOne(Request $request, $id)
+    public function listOne(Request $request,$SiteId,$id)
     {try
       {
-          $response = Establecimiento::findOrFail($id);
+          $response = Publicacion::where('id_establecimiento','=',$SiteId)
+          ->where('id','=',$id)->get();
           $statusCode = 200;  // OK
       }
       catch (ModelNotFoundException $e)
@@ -41,13 +41,15 @@ class EstablecimientosController extends Controller
       return response()->json($response, $statusCode);
     }
 
-    public function create(Request $request)
+    public function create(Request $request,$SiteId)
     {
+      $request->id_establecimiento=$SiteId;
       $input = $request->all();
+      
 
       try
       {
-        $response = Establecimiento::create($input);
+        $response = Publicacion::create($input);
         $statusCode = 200;  // OK
       }
       catch (QueryException $e)
@@ -64,7 +66,7 @@ class EstablecimientosController extends Controller
     {
       try
      {
-       $establecimiento = Establecimiento::findOrFail($id);
+       $publicacion = Publicacion::findOrFail($id);
      }
      catch (ModelNotFoundException $e)
      {
@@ -73,7 +75,7 @@ class EstablecimientosController extends Controller
 
      $input = $request->all();
 
-     $response = $establecimiento->fill($input);
+     $response = $publicacion->fill($input);
 
      try
      {
@@ -93,7 +95,7 @@ class EstablecimientosController extends Controller
     {
       try
    {
-     $establecimiento = Establecimiento::findOrFail($id);
+     $publicacion = Publicacion::findOrFail($id);
    }
    catch (ModelNotFoundException $e)
    {
@@ -102,7 +104,7 @@ class EstablecimientosController extends Controller
 
    try
    {
-     $response = $establecimiento->delete();
+     $response = $publicacion->delete();
      $statusCode = 200;  // OK
    }
    catch (QueryException $e)

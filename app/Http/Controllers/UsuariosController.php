@@ -29,7 +29,7 @@ class UsuariosController extends Controller
       $this->validate($request, [
             'name'      => 'required | string | max:40',
             'email'       => 'required | email',
-            'nickname'    => 'required | string | alpha_num | max:32',
+            'nickname'    => 'required | string | max:32',
             'password'    => 'required | string |min:6| max:30'
         ]);
         $input = $request->all();

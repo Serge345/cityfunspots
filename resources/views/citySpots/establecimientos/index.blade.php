@@ -14,7 +14,7 @@
 <p>
     <a href="{{ route('establecimientos.show', $establecimiento->id) }}" class="btn btn-info">ver sitio</a>
     <a href="{{ route('establecimientos.edit', $establecimiento->id) }}" class="btn btn-primary">editar sitio</a>
-    <a href="{{ route('publicaciones.create', $establecimiento->id) }}" class="btn btn-primary">agregar un comentario</a>
+    <a href="{{ route('publicaciones.create') }}" class="btn btn-primary">agregar un comentario</a>
 </p>
 <hr>
 

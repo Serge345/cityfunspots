@@ -10,6 +10,7 @@ use Session;
 
 class TipoEstablecimientoController extends Controller
 {
+  
   public function home(Request $request){
     return view('citySpots.home');
   }

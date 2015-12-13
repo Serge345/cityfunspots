@@ -10,7 +10,7 @@ use Session;
 
 class EstablecimientosController extends Controller
 {
-
+    
 
   public function create(Request $request){
     return view('citySpots/establecimientos/create');
