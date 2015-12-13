@@ -138,6 +138,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
+        'Barryvdh\Cors\ServiceProvider',
         /*
          * Application Service Providers...
          */

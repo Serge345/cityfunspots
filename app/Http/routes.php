@@ -36,7 +36,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 //Rutas del WEBService
 
 //Usuario
-Route::group(array('prefix' => 'api'), function()
+Route::group(array('prefix' => 'api','middleware' => 'cors'), function()
 {
   Route::get('usuario',         'api\UsuariosController@listAll');
   Route::get('usuario/{id}',    'api\UsuariosController@listOne');
@@ -44,7 +44,7 @@ Route::group(array('prefix' => 'api'), function()
 });
 
 //Sitio
-Route::group(array('prefix' => 'api'), function()
+Route::group(array('prefix' => 'api','middleware' => 'cors'), function()
 {
   Route::get('establecimientos',         'api\EstablecimientosController@listAll');
   Route::get('establecimientos/{id}',    'api\EstablecimientosController@listOne');
@@ -54,7 +54,7 @@ Route::group(array('prefix' => 'api'), function()
 });
 
 //Comentario
-Route::group(array('prefix' => 'api'), function()
+Route::group(array('prefix' => 'api','middleware' => 'cors'), function()
 {
   Route::get('publicaciones/{SiteId}',         'api\PublicacionesController@listAll');
   Route::get('publicaciones/{SiteId}/{id}',    'api\PublicacionesController@listOne');
